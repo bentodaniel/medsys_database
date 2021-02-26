@@ -2,6 +2,8 @@ package facade.DTO;
 
 import business.Consulta;
 
+import java.text.SimpleDateFormat;
+
 public class ConsultaDTO {
 
     private int processo;
@@ -172,7 +174,10 @@ public class ConsultaDTO {
         consultaDTO.setReferenciacao(consulta.getReferenciacao());
         consultaDTO.setGestos(consulta.getGestos());
         consultaDTO.setObservacoes(consulta.getObservacoes());
-        consultaDTO.setData(consulta.getData().toString());
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String format = formatter.format(consulta.getData());
+        consultaDTO.setData(format);
         return consultaDTO;
     }
 }

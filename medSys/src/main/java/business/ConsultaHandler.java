@@ -94,7 +94,7 @@ public class ConsultaHandler {
             TipoAutonomia tipoAutonomia = TipoAutonomia.valueOf(autonomia);
             TipoGenero tipoGenero = TipoGenero.valueOf(sexo);
 
-            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             Date dateParsed = format.parse(data);
 
             // call on catalog
@@ -218,6 +218,34 @@ public class ConsultaHandler {
         return result;
     }
 
+    public boolean removeAllConsultas() throws ApplicationException {
+        EntityManager em = emf.createEntityManager();
+        ConsultaCatalogo consultaCatalogo = new ConsultaCatalogo(em);
+        boolean result = false;
+        try {
+            em.getTransaction().begin();
+            consultaCatalogo.removeAllConsultas();
+            em.getTransaction().commit();
+
+            result = true;
+        }
+        catch (ConsultaBusinessException e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw new ApplicationException(e.getMessage(), e);
+        }
+        catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw new ApplicationException("Erro ao procurar consulta.", e);
+        }
+        finally {
+            em.close();
+        }
+        return result;
+    }
 
     //todo
 }

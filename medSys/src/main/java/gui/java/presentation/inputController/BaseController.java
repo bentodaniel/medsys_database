@@ -1,11 +1,13 @@
 package gui.java.presentation.inputController;
 
+import facade.DTO.ConsultaDTO;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
+import java.io.*;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class BaseController {
@@ -43,21 +45,81 @@ public class BaseController {
         this.i18nBundle = i18nBundle;
     }
 
-    public void saveToExternalFile(Stage stage) {
+    public void saveToExternalFile(Stage stage, MainWindowController mainWindowController) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Export");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("TXT", "*.txt")
+        );
         File file = fileChooser.showSaveDialog(stage);
         if (file != null) {
-            //todo
+            try {
+                List<ConsultaDTO> consultaDTOList = mainWindowController.getConsultaData();
+                PrintWriter writer = new PrintWriter(file, "UTF-8");
+
+                for (ConsultaDTO consulta : consultaDTOList) {
+                    writer.println(
+                            consulta.getProcesso() + "|" +
+                            consulta.getTipo() + "|" +
+                            consulta.getAutonomia() + "|" +
+                            consulta.getSexo() + "|" +
+                            consulta.getIdade() + "|" +
+                            consulta.getProfissao() + "|" +
+                            consulta.getMotivo() + "|" +
+                            consulta.getProblemas() + "|" +
+                            consulta.getMcdts() + "|" +
+                            consulta.getReferenciacao() + "|" +
+                            consulta.getGestos() + "|" +
+                            consulta.getObservacoes() + "|" +
+                            consulta.getData()
+                    );
+                }
+
+                writer.close();
+            }
+            catch (Exception e) {
+                showError(i18nBundle.getString("application.cant.write.save"));
+            }
+
         }
     }
 
-    public void openExternalFile(Stage stage) {
+    public void openExternalFile(Stage stage, MainWindowController mainWindowController) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Import");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("TXT", "*.txt")
+        );
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            try {
+                BufferedReader br = new BufferedReader(new FileReader(file));
 
-        fileChooser.showOpenDialog(stage);
+                mainWindowController.restartDB();
 
-        //todo
+                String line = br.readLine();
+
+                while (line != null) {
+                    String[] values = line.split("\\|");
+
+                    if (values.length == 13) {
+                        ConsultaDTO consultaDTO = new ConsultaDTO(Integer.parseInt(values[0]), values[1], values[2],
+                                values[3], Integer.parseInt(values[4]), values[5], values[6], values[7], values[8],
+                                values[9], values[10], values[11], values[12]);
+
+                        mainWindowController.addConsulta(consultaDTO);
+                    }
+                    line = br.readLine();
+                }
+                mainWindowController.startGetAll();
+
+                br.close();
+            }
+            catch (FileNotFoundException e) {
+                showError(i18nBundle.getString("application.cant.open.file"));
+            } catch (IOException e) {
+                showError(i18nBundle.getString("application.error.parsing.file"));
+            }
+        }
     }
 }

@@ -46,4 +46,7 @@ public class ConsultaOperationsService {
                 motivo, problemas, mcdts, referenciacao, gestos, observacoes, data);
     }
 
+    public boolean removeAllConsultas() throws ApplicationException {
+        return consultaHandler.removeAllConsultas();
+    }
 }

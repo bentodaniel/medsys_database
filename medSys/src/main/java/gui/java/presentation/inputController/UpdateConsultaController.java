@@ -6,8 +6,6 @@ import business.enums.TipoGenero;
 import facade.DTO.ConsultaDTO;
 import facade.exceptions.ApplicationException;
 import facade.services.ConsultaOperationsService;
-import gui.java.presentation.model.CriarConsultaModel;
-import gui.java.presentation.model.DeleteConsultaModel;
 import gui.java.presentation.model.UpdateConsultaModel;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
@@ -76,6 +74,21 @@ public class UpdateConsultaController extends BaseController implements Initiali
         };
         idadeField.setTextFormatter(new TextFormatter<>(new IntegerStringConverter(),0, integerFilter));
 
+        // Do not allow "|" character
+        UnaryOperator<TextFormatter.Change> charFilter = change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("[^|]*")) {
+                return change;
+            }
+            return null;
+        };
+        profissaoField.setTextFormatter(new TextFormatter<>(charFilter));
+        motivoField.setTextFormatter(new TextFormatter<>(charFilter));
+        problemasField.setTextFormatter(new TextFormatter<>(charFilter));
+        mcdtsField.setTextFormatter(new TextFormatter<>(charFilter));
+        referenciacaoField.setTextFormatter(new TextFormatter<>(charFilter));
+        gestosField.setTextFormatter(new TextFormatter<>(charFilter));
+        observacoesField.setTextFormatter(new TextFormatter<>(charFilter));
 
         // All needed fields should be filled
         BooleanBinding booleanBind = idadeField.textProperty().isEmpty()
@@ -114,8 +127,6 @@ public class UpdateConsultaController extends BaseController implements Initiali
         }
 
     }
-
-    //todo - fill all the fields with the consulta data
 
     private void bindFields() {
         tipoComboBox.valueProperty().bindBidirectional(updateConsultaModel.tipoProperty());
@@ -172,8 +183,7 @@ public class UpdateConsultaController extends BaseController implements Initiali
                 return service.getConsulta(selectedProcesso);
             }
             catch (ApplicationException e) {
-                //todo
-                //ignore?
+                showError(i18nBundle.getString("application.error.getting.selected.consulta") + ": " + e.getMessage());
             }
         }
         return null;

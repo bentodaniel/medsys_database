@@ -8,6 +8,7 @@ import business.exceptions.ConsultaNotFoundException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.Date;
 import java.util.List;
@@ -130,4 +131,12 @@ public class ConsultaCatalogo {
         consulta.setData(data);
     }
 
+    public void removeAllConsultas() throws ConsultaBusinessException {
+        try {
+            Query query = em.createNamedQuery(Consulta.REMOVE_ALL);
+            query.executeUpdate();
+        } catch (PersistenceException e) {
+            throw new ConsultaBusinessException("Nao foi possivel limpar a base de dados");
+        }
+    }
 }

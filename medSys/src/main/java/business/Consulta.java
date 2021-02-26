@@ -12,13 +12,14 @@ import java.util.Date;
         @NamedQuery(name = Consulta.GET_ALL, query = "SELECT c FROM Consulta c"),
         @NamedQuery(name = Consulta.GET_ALL_PROCESSOS, query = "SELECT c.processo FROM Consulta c"),
         @NamedQuery(name = Consulta.GET_BY_PROCESSO, query = "SELECT c FROM Consulta c WHERE c.processo = :" + Consulta.PROCESSO),
-
+        @NamedQuery(name = Consulta.REMOVE_ALL, query = "DELETE FROM Consulta")
 })
 public class Consulta {
 
     public static final String GET_ALL = "Consulta.getAll";
     public static final String GET_ALL_PROCESSOS = "Consulta.getAllProcessos";
     public static final String GET_BY_PROCESSO = "Consulta.getByProcesso";
+    public static final String REMOVE_ALL = "Consulta.removeAll";
 
     public static final String PROCESSO = "processo";
 

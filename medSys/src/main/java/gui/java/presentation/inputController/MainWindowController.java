@@ -1,5 +1,6 @@
 package gui.java.presentation.inputController;
 
+import business.Consulta;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -14,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import facade.exceptions.ApplicationException;
@@ -198,7 +200,7 @@ public class MainWindowController extends BaseController implements Initializabl
             this.consultaData.addAll(consultaOperationsService.getAllConsultas());
         }
         catch (ApplicationException e) {
-            //todo
+            showError(i18nBundle.getString("application.error.getting.all.consultas") + ": " + e.getMessage());
         }
         consultaTable.getItems().setAll(consultaData);
     }
@@ -209,23 +211,35 @@ public class MainWindowController extends BaseController implements Initializabl
     }
 
     public void restartDB() {
-        //todo - delete everything from the bd
+        try {
+            boolean deleteResult = consultaOperationsService.removeAllConsultas();
+            if (deleteResult) {
+                consultaData.clear();
+                consultaTable.getItems().clear();
+            }
+        } catch (ApplicationException e) {
+            showError(i18nBundle.getString("application.error.removing.all.consultas") + ": " + e.getMessage());
+        }
     }
 
     @FXML
-    private void showExport() {
+    private void showExportWindow() {
         Stage stage = (Stage) consultaTable.getScene().getWindow();
-        saveToExternalFile(stage);
-        //todo - pass current list?
+        saveToExternalFile(stage, this);
     }
 
     @FXML
     private void showImportWindow() {
-
-        //todo - warning you'll lose the current bd
-
-        Stage stage = (Stage) consultaTable.getScene().getWindow();
-        openExternalFile(stage);
+        Alert alert = new Alert(Alert.AlertType.WARNING, "", ButtonType.CANCEL, ButtonType.OK);
+        alert.setTitle(i18nBundle.getString("warning.dialog.title"));
+        alert.setHeaderText(null);
+        alert.setContentText(i18nBundle.getString("application.import.text"));
+        alert.showAndWait().ifPresent(response -> {
+            if (response.getText().toLowerCase().equals("ok")) {
+                Stage stage = (Stage) consultaTable.getScene().getWindow();
+                openExternalFile(stage, this);
+            }
+        });
     }
 
     @FXML
@@ -383,6 +397,8 @@ public class MainWindowController extends BaseController implements Initializabl
             }
             else {
                 // FILTER
+
+                //todo
             }
 
             Stage stage = new Stage();
@@ -394,5 +410,9 @@ public class MainWindowController extends BaseController implements Initializabl
         catch (Exception e){
             showError(i18nBundle.getString("error.general"));
         }
+    }
+
+    public List<ConsultaDTO> getConsultaData() {
+        return consultaData;
     }
 }

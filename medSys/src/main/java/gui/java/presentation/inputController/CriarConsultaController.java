@@ -73,6 +73,22 @@ public class CriarConsultaController extends BaseController implements Initializ
         processoField.setTextFormatter(new TextFormatter<>(new IntegerStringConverter(),0, integerFilter));
         idadeField.setTextFormatter(new TextFormatter<>(new IntegerStringConverter(),0, integerFilter));
 
+        // Do not allow "|" character
+        UnaryOperator<TextFormatter.Change> charFilter = change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("[^|]*")) {
+                return change;
+            }
+            return null;
+        };
+
+        profissaoField.setTextFormatter(new TextFormatter<>(charFilter));
+        motivoField.setTextFormatter(new TextFormatter<>(charFilter));
+        problemasField.setTextFormatter(new TextFormatter<>(charFilter));
+        mcdtsField.setTextFormatter(new TextFormatter<>(charFilter));
+        referenciacaoField.setTextFormatter(new TextFormatter<>(charFilter));
+        gestosField.setTextFormatter(new TextFormatter<>(charFilter));
+        observacoesField.setTextFormatter(new TextFormatter<>(charFilter));
 
         // All needed fields should be filled
         BooleanBinding booleanBind = processoField.textProperty().isEmpty()
@@ -129,7 +145,7 @@ public class CriarConsultaController extends BaseController implements Initializ
                 criarConsultaModel.getAutonomia(), criarConsultaModel.getSexo(), criarConsultaModel.getIdade(),
                 criarConsultaModel.getProfissao(), criarConsultaModel.getMotivo(), criarConsultaModel.getProblemas(),
                 criarConsultaModel.getMcdts(), criarConsultaModel.getReferenciacao(), criarConsultaModel.getGestos(),
-                criarConsultaModel.getObservacoes(), criarConsultaModel.getData());
+                criarConsultaModel.getObservacoes(), criarConsultaModel.getDataFormated());
         boolean addSuccess = mainWindowController.addConsulta(consultaDTO);
 
         if (addSuccess){

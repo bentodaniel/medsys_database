@@ -26,7 +26,7 @@
                         <Menu mnemonicParsing="false" text="File">
                             <items>
                                 <MenuItem mnemonicParsing="false" text="New" onAction="#showNewWindow" />
-                                <MenuItem mnemonicParsing="false" text="Export..." onAction="#showExport" />
+                                <MenuItem mnemonicParsing="false" text="Export..." onAction="#showExportWindow" />
                                 <MenuItem mnemonicParsing="false" text="Import..." onAction="#showImportWindow"/>
                                 <MenuItem mnemonicParsing="false" text="Close" onAction="#showCloseWindow"/>
                             </items>
