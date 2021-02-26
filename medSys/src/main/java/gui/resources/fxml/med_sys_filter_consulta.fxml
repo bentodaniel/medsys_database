@@ -23,7 +23,7 @@
          <Font size="15.0" />
       </font>
    </Label>
-   <ComboBox fx:id="operationComboBox" prefHeight="30.0" prefWidth="150.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="100.0" />
+   <ComboBox fx:id="operationComboBox" onAction="#selectedOperationFieldChange" prefHeight="30.0" prefWidth="150.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="100.0" />
 
    <Label prefHeight="34.0" prefWidth="118.0" text="%label.value" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="150.0">
       <font>
@@ -36,19 +36,19 @@
    <Line endX="372.0" endY="267.0" startX="143.0" startY="267.0" strokeWidth="0.5" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="265.0" />
    <Line endX="350.0" endY="390.0" layoutX="10.0" layoutY="10.0" startY="390.0" strokeWidth="0.5" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" />
 
-   <Label layoutX="35.0" layoutY="249.0" prefHeight="34.0" prefWidth="118.0" text="%label.value.max" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="300.0">
+   <Label layoutX="35.0" layoutY="249.0" prefHeight="34.0" prefWidth="118.0" text="%label.value.min" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="300.0">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <TextField fx:id="maxValueField" layoutX="200.0" layoutY="281.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: 123" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="300.0" />
+   <TextField fx:id="minValueField" layoutX="200.0" layoutY="281.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: 123" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="300.0" />
 
-   <Label layoutX="35.0" layoutY="249.0" prefHeight="34.0" prefWidth="118.0" text="%label.value.min" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="350.0">
+   <Label layoutX="35.0" layoutY="249.0" prefHeight="34.0" prefWidth="118.0" text="%label.value.max" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="350.0">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <TextField fx:id="minValueField" layoutX="210.0" layoutY="291.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: 123" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="350.0" />
+   <TextField fx:id="maxValueField" layoutX="210.0" layoutY="291.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: 123" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="350.0" />
 
    <Button fx:id="cancelFilterBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="400.0" mnemonicParsing="false" onAction="#cancelFilter" prefHeight="30.0" prefWidth="150.0" text="%btn.cancel" textAlignment="CENTER" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="450.0" />
    <Button fx:id="okFilterBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="325.0" layoutY="400.0" mnemonicParsing="false" onAction="#filterConsulta" prefHeight="30.0" prefWidth="150.0" text="%btn.apply" textAlignment="CENTER" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="450.0" />

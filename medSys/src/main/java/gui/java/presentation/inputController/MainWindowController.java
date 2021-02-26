@@ -1,6 +1,5 @@
 package gui.java.presentation.inputController;
 
-import business.Consulta;
 import gui.java.presentation.model.FilterConsultaModel;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;

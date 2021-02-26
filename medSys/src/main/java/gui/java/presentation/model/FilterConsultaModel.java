@@ -8,15 +8,15 @@ public class FilterConsultaModel {
     private final StringProperty selectedFilter;
     private final StringProperty operation;
     private final StringProperty value;
-    private final StringProperty maxValue;
     private final StringProperty minValue;
+    private final StringProperty maxValue;
 
     public FilterConsultaModel() {
         this.selectedFilter = new SimpleStringProperty();
         this.operation = new SimpleStringProperty();
         this.value = new SimpleStringProperty();
-        this.maxValue = new SimpleStringProperty();
         this.minValue = new SimpleStringProperty();
+        this.maxValue = new SimpleStringProperty();
     }
 
     /** GETTER */
@@ -33,12 +33,12 @@ public class FilterConsultaModel {
         return value.get();
     }
 
-    public String getMaxValue() {
-        return maxValue.get();
-    }
-
     public String getMinValue() {
         return minValue.get();
+    }
+
+    public String getMaxValue() {
+        return maxValue.get();
     }
 
     /** SETTER */
@@ -55,12 +55,12 @@ public class FilterConsultaModel {
         this.value.set(value);
     }
 
-    public void setMaxValue(String maxValue) {
-        this.maxValue.set(maxValue);
-    }
-
     public void setMinValue(String minValue) {
         this.minValue.set(minValue);
+    }
+
+    public void setMaxValue(String maxValue) {
+        this.maxValue.set(maxValue);
     }
 
     /** PROPERTY */
@@ -77,11 +77,11 @@ public class FilterConsultaModel {
         return value;
     }
 
-    public StringProperty maxValueProperty() {
-        return maxValue;
-    }
-
     public StringProperty minValueProperty() {
         return minValue;
+    }
+
+    public StringProperty maxValueProperty() {
+        return maxValue;
     }
 }
