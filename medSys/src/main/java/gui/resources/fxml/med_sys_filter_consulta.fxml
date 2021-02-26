@@ -6,33 +6,50 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.java.presentation.inputController.FilterConsultaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.java.presentation.inputController.FilterConsultaController">
    <Label prefHeight="34.0" prefWidth="118.0" text="%label.filter.by" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <ComboBox fx:id="selectedFilterFieldComboBox" prefHeight="30.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0" />
+   <ComboBox fx:id="selectedFilterFieldComboBox" onAction="#selectedFilterFieldChange" prefHeight="30.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0" />
    <Separator prefHeight="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0" />
-   <AnchorPane fx:id="filterProcessoPane" prefHeight="350.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
-      <children>
 
-                     <Label prefHeight="34.0" prefWidth="118.0" text="%label.operation" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="50.0">
-            <font>
-               <Font size="15.0" />
-            </font>
-         </Label>
-         <ComboBox fx:id="tipoComboBox" prefHeight="30.0" prefWidth="150.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="50.0" />
-         <Label prefHeight="34.0" prefWidth="118.0" text="%label.value" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="150.0">
-            <font>
-               <Font size="15.0" />
-            </font>
-         </Label>
-         <TextField fx:id="idadeField" prefHeight="30.0" prefWidth="167.0" promptText="Ex: 123" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="150.0" />
-      </children>
-   </AnchorPane>
-   <Button fx:id="cancelFilterBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="400.0" mnemonicParsing="false" onAction="#cancelFilter" prefHeight="30.0" prefWidth="150.0" text="%btn.cancel" textAlignment="CENTER" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="400.0" />
-   <Button fx:id="okFilterBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="325.0" layoutY="400.0" mnemonicParsing="false" onAction="#filterConsulta" prefHeight="30.0" prefWidth="150.0" text="%btn.apply" textAlignment="CENTER" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="400.0" />
+   <Label prefHeight="34.0" prefWidth="118.0" text="%label.operation" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="100.0">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Label>
+   <ComboBox fx:id="operationComboBox" prefHeight="30.0" prefWidth="150.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="100.0" />
+
+   <Label prefHeight="34.0" prefWidth="118.0" text="%label.value" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="150.0">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Label>
+   <TextField fx:id="valueField" prefHeight="30.0" prefWidth="167.0" promptText="Ex: 123" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="150.0" />
+
+   <Label layoutX="25.0" layoutY="239.0" prefHeight="34.0" prefWidth="118.0" text="%label.value.interval" AnchorPane.topAnchor="250.0" />
+   <Line endX="372.0" endY="267.0" startX="143.0" startY="267.0" strokeWidth="0.5" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="265.0" />
+   <Line endX="350.0" endY="390.0" layoutX="10.0" layoutY="10.0" startY="390.0" strokeWidth="0.5" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" />
+
+   <Label layoutX="35.0" layoutY="249.0" prefHeight="34.0" prefWidth="118.0" text="%label.value.max" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="300.0">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Label>
+   <TextField fx:id="maxValueField" layoutX="200.0" layoutY="281.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: 123" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="300.0" />
+
+   <Label layoutX="35.0" layoutY="249.0" prefHeight="34.0" prefWidth="118.0" text="%label.value.min" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="350.0">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Label>
+   <TextField fx:id="minValueField" layoutX="210.0" layoutY="291.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: 123" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="350.0" />
+
+   <Button fx:id="cancelFilterBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="400.0" mnemonicParsing="false" onAction="#cancelFilter" prefHeight="30.0" prefWidth="150.0" text="%btn.cancel" textAlignment="CENTER" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="450.0" />
+   <Button fx:id="okFilterBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="325.0" layoutY="400.0" mnemonicParsing="false" onAction="#filterConsulta" prefHeight="30.0" prefWidth="150.0" text="%btn.apply" textAlignment="CENTER" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="450.0" />
 </AnchorPane>

@@ -1,13 +1,12 @@
 package gui.java.presentation.inputController;
 
-import business.enums.TipoConsulta;
 import gui.java.presentation.enums.FilterFieldType;
-import gui.java.presentation.model.DeleteConsultaModel;
 import gui.java.presentation.model.FilterConsultaModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -18,12 +17,12 @@ import java.util.stream.Stream;
 
 public class FilterConsultaController extends BaseController implements Initializable {
 
-    @FXML
-    private ComboBox<String> selectedFilterFieldComboBox;
-
-
-    @FXML
-    private Button okFilterBtn;
+    @FXML private ComboBox<String> selectedFilterFieldComboBox;
+    @FXML private ComboBox<String> operationComboBox;
+    @FXML private TextField valueField;
+    @FXML private TextField maxValueField;
+    @FXML private TextField minValueField;
+    @FXML private Button okFilterBtn;
 
     private FilterConsultaModel filterConsultaModel;
     private MainWindowController mainWindowController;
@@ -38,26 +37,16 @@ public class FilterConsultaController extends BaseController implements Initiali
         selectedFilterFieldComboBox.getItems().setAll(tiposFilterField);
         selectedFilterFieldComboBox.getSelectionModel().selectFirst();
 
-        
     }
 
     public void setModel(FilterConsultaModel model) {
         this.filterConsultaModel = model;
 
-        /*
-        int index = processosList.indexOf(selectedItem);
-
-        List<String> processosIds = processosList.stream()
-                .map(String::valueOf)
-                .collect(Collectors.toList());
-        selectedProcessComboBox.getItems().setAll(processosIds);
-
-        selectedProcessComboBox.valueProperty().bindBidirectional(
-                deleteConsultaModel.processoProperty());
-
-        selectedProcessComboBox.getSelectionModel().select(index == -1 ? 0 : index);
-
-         */
+        selectedFilterFieldComboBox.valueProperty().bindBidirectional(filterConsultaModel.selectedFilterProperty());
+        operationComboBox.valueProperty().bindBidirectional(filterConsultaModel.operationProperty());
+        valueField.textProperty().bindBidirectional(filterConsultaModel.valueProperty());
+        maxValueField.textProperty().bindBidirectional(filterConsultaModel.maxValueProperty());
+        minValueField.textProperty().bindBidirectional(filterConsultaModel.minValueProperty());
     }
 
     public void setParentController(MainWindowController controller) {
@@ -65,7 +54,7 @@ public class FilterConsultaController extends BaseController implements Initiali
     }
 
     @FXML
-    private void resetFilter() {
+    private void selectedFilterFieldChange() {
 
     }
 

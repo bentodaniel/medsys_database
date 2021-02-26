@@ -1,6 +1,7 @@
 package gui.java.presentation.inputController;
 
 import business.Consulta;
+import gui.java.presentation.model.FilterConsultaModel;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -397,8 +398,10 @@ public class MainWindowController extends BaseController implements Initializabl
             }
             else {
                 // FILTER
-
-                //todo
+                FilterConsultaController filterConsultaController = fxmlLoader.getController();
+                FilterConsultaModel filterConsultaModel = new FilterConsultaModel();
+                filterConsultaController.setParentController(this);
+                filterConsultaController.setModel(filterConsultaModel);
             }
 
             Stage stage = new Stage();
