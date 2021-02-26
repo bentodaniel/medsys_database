@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.java.presentation.inputController.DeleteConsultaController">
+   <Label layoutX="39.0" layoutY="124.0" text="%label.selected.process" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Label>
+   <ComboBox fx:id="selectedProcessComboBox" layoutX="185.0" layoutY="139.0" prefHeight="30.0" prefWidth="150.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0" />
+   <Button fx:id="cancelDeleteBtn" onAction="#cancelDelete" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="776.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="%btn.cancel" textAlignment="CENTER" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="100.0" />
+   <Button fx:id="okDeleteBtn" onAction="#deleteConsulta" alignment="CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="776.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="%btn.delete" textAlignment="CENTER" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="100.0" />
+</AnchorPane>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.CheckComboBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.java.presentation.inputController.MainWindowController">
+    <children>
+        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="New" onAction="#showNewWindow" />
+                                <MenuItem mnemonicParsing="false" text="Export..." onAction="#showExport" />
+                                <MenuItem mnemonicParsing="false" text="Import..." onAction="#showImportWindow"/>
+                                <MenuItem mnemonicParsing="false" text="Close" onAction="#showCloseWindow"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Edit">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#loadAllData" text="Show All" />
+                                <MenuItem mnemonicParsing="false" onAction="#showAddConsulta" text="Create" />
+                                <MenuItem mnemonicParsing="false" onAction="#showUpdateConsulta" text="Update" />
+                                <MenuItem mnemonicParsing="false" onAction="#showRemoveConsulta" text="Delete" />
+                                <MenuItem mnemonicParsing="false" onAction="#showFilterConsulta" text="Filter" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="About" onAction="#showInfoWindow"/>
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <BorderPane>
+                    <left>
+                        <HBox BorderPane.alignment="CENTER">
+                            <children>
+                        <Label fx:id="counterText1" text="Colunas: ">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="7.0" left="10.0" right="5.0" top="7.0" />
+                           </HBox.margin>
+                        </Label>
+                        <CheckComboBox fx:id="selectCheckComboBox">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </CheckComboBox>
+
+                                <Button fx:id="showCreate_button" mnemonicParsing="false" onAction="#showAddConsulta" text="%btn.create">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </HBox.margin>
+                                </Button>
+
+                                <Button fx:id="showUpdate_button" mnemonicParsing="false" onAction="#showUpdateConsulta" text="%btn.update">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </HBox.margin>
+                                </Button>
+
+                                <Button fx:id="showDelete_button" mnemonicParsing="false" onAction="#showRemoveConsulta" text="%btn.delete">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </HBox.margin>
+                                </Button>
+                                <Button fx:id="showFilter_button" mnemonicParsing="false" onAction="#showFilterConsulta" text="%btn.filter">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </HBox.margin>
+                                </Button>
+
+                            </children>
+                        </HBox>
+                    </left>
+                    <right>
+                        <HBox BorderPane.alignment="CENTER">
+                            <children>
+                                <Label text="Counter: ">
+                                    <HBox.margin>
+                                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                    </HBox.margin>
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="counterText" text="0">
+                                    <HBox.margin>
+                                        <Insets bottom="7.0" left="7.0" right="10.0" top="7.0" />
+                                    </HBox.margin>
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                    </right>
+                </BorderPane>
+
+                <Separator prefHeight="5.0" prefWidth="200.0" />
+
+                <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+                    <content>
+                        <TableView fx:id="consultaTable" prefHeight="720.0">
+                            <columns>
+                                <TableColumn fx:id="processoColumn" prefWidth="100.0" text="Processo" />
+                                <TableColumn fx:id="tipoColumn" prefWidth="150.0" text="Tipo" />
+                                <TableColumn fx:id="autonomiaColumn" minWidth="0.0" prefWidth="150.0" text="Autonomia" />
+                                <TableColumn fx:id="sexoColumn" minWidth="0.0" prefWidth="150.0" text="Sexo" />
+                                <TableColumn fx:id="idadeColumn" minWidth="0.0" prefWidth="150.0" text="Idade" />
+                                <TableColumn fx:id="profissaoColumn" minWidth="0.0" prefWidth="150.0" text="Profissão" />
+                                <TableColumn fx:id="motivoColumn" minWidth="0.0" prefWidth="150.0" text="Motivo" />
+                                <TableColumn fx:id="problemasColumn" minWidth="0.0" prefWidth="150.0" text="Problemas" />
+                                <TableColumn fx:id="mcdtsColumn" minWidth="0.0" prefWidth="150.0" text="Mcdts" />
+                                <TableColumn fx:id="referenciacaoColumn" minWidth="0.0" prefWidth="150.0" text="Referenciação" />
+                                <TableColumn fx:id="gestosColumn" minWidth="0.0" prefWidth="150.0" text="Gestos" />
+                                <TableColumn fx:id="observacoesColumn" minWidth="0.0" prefWidth="150.0" text="Observações" />
+                                <TableColumn fx:id="dataColumn" minWidth="0.0" prefWidth="150.0" text="Data" />
+                            </columns>
+                        </TableView>
+                    </content>
+                </ScrollPane>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
