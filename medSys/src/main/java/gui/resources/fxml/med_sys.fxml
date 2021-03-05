@@ -25,10 +25,10 @@
                     <menus>
                         <Menu mnemonicParsing="false" text="File">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="New" onAction="#showNewWindow" />
-                                <MenuItem mnemonicParsing="false" text="Export..." onAction="#showExportWindow" />
-                                <MenuItem mnemonicParsing="false" text="Import..." onAction="#showImportWindow"/>
-                                <MenuItem mnemonicParsing="false" text="Close" onAction="#showCloseWindow"/>
+                                <MenuItem mnemonicParsing="false" onAction="#showNewWindow" text="New" />
+                                <MenuItem mnemonicParsing="false" onAction="#showExportWindow" text="Export..." />
+                                <MenuItem mnemonicParsing="false" onAction="#showImportWindow" text="Import..." />
+                                <MenuItem mnemonicParsing="false" onAction="#showCloseWindow" text="Close" />
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Edit">
@@ -42,7 +42,7 @@
                         </Menu>
                         <Menu mnemonicParsing="false" text="Help">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="About" onAction="#showInfoWindow"/>
+                                <MenuItem mnemonicParsing="false" onAction="#showInfoWindow" text="About" />
                             </items>
                         </Menu>
                     </menus>
@@ -86,6 +86,11 @@
                                     <HBox.margin>
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                     </HBox.margin>
+                                </Button>
+                                <Button fx:id="showAll_button" mnemonicParsing="false" onAction="#loadAllData" text="%btn.all">
+                                   <HBox.margin>
+                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                   </HBox.margin>
                                 </Button>
 
                             </children>
