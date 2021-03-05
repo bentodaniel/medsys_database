@@ -420,8 +420,6 @@ public class ConsultaHandler {
                 //no problem, stay as null
             }
 
-            //todo - something is weird... the min and max dates are not passing when between is selected?
-
             try {
                 dateMinParsed = format.parse(dateMin);
                 dateMaxParsed = format.parse(dateMax);
