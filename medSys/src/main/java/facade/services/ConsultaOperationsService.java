@@ -60,11 +60,11 @@ public class ConsultaOperationsService {
         return consultaHandler.filterByTipo(operation, selectedValue);
     }
 
-    public List<ConsultaDTO> filterByAutonomia(String operation, String selectedValue) {
+    public List<ConsultaDTO> filterByAutonomia(String operation, String selectedValue) throws ApplicationException {
         return consultaHandler.filterByAutonomia(operation, selectedValue);
     }
 
-    public List<ConsultaDTO> filterByGenero(String operation, String selectedValue) {
+    public List<ConsultaDTO> filterByGenero(String operation, String selectedValue) throws ApplicationException {
         return consultaHandler.filterByGenero(operation, selectedValue);
     }
 }

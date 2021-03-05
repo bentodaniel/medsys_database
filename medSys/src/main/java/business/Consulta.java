@@ -16,6 +16,13 @@ import java.util.Date;
 
         @NamedQuery(name = Consulta.GET_BY_TIPO_EQUALS, query = "SELECT c FROM Consulta c WHERE c.tipo = :" + Consulta.TIPO),
         @NamedQuery(name = Consulta.GET_BY_TIPO_DIFFERENT, query = "SELECT c FROM Consulta c WHERE c.tipo != :" + Consulta.TIPO),
+
+        @NamedQuery(name = Consulta.GET_BY_AUTONOMIA_EQUALS, query = "SELECT c FROM Consulta c WHERE c.autonomia = :" + Consulta.AUTONOMIA),
+        @NamedQuery(name = Consulta.GET_BY_AUTONOMIA_DIFFERENT, query = "SELECT c FROM Consulta c WHERE c.autonomia != :" + Consulta.AUTONOMIA),
+
+        @NamedQuery(name = Consulta.GET_BY_SEXO_EQUALS, query = "SELECT c FROM Consulta c WHERE c.sexo = :" + Consulta.SEXO),
+        @NamedQuery(name = Consulta.GET_BY_SEXO_DIFFERENT, query = "SELECT c FROM Consulta c WHERE c.sexo != :" + Consulta.SEXO),
+
 })
 public class Consulta {
 
@@ -27,8 +34,16 @@ public class Consulta {
     public static final String GET_BY_TIPO_EQUALS = "Consulta.getByTipoEquals";
     public static final String GET_BY_TIPO_DIFFERENT = "Consulta.getByTipoDifferent";
 
+    public static final String GET_BY_AUTONOMIA_EQUALS = "Consulta.getByAutonomiaEquals";
+    public static final String GET_BY_AUTONOMIA_DIFFERENT = "Consulta.getByAutonomiaDifferent";
+
+    public static final String GET_BY_SEXO_EQUALS = "Consulta.getBySexoEquals";
+    public static final String GET_BY_SEXO_DIFFERENT = "Consulta.getBySexoDifferent";
+
     public static final String PROCESSO = "processo";
     public static final String TIPO = "tipo";
+    public static final String AUTONOMIA = "autonomia";
+    public static final String SEXO = "sexo";
 
     @Id()
     private int processo;

@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -143,7 +144,6 @@ public class ConsultaCatalogo {
 
     public List<Consulta> filterGetAllConsultasByTipo(OperationType operation, TipoConsulta tipo)
             throws ConsultaBusinessException {
-
         try {
             TypedQuery<Consulta> query = null;
             switch (operation) {
@@ -157,9 +157,66 @@ public class ConsultaCatalogo {
                     query.setParameter(Consulta.TIPO, tipo);
                     break;
             }
-            return query.getResultList();
+            if (query != null) {
+                return query.getResultList();
+            }
+            else {
+                throw new ConsultaBusinessException("Algo correu mal ao tentar filtrar as consultas");
+            }
         } catch (PersistenceException e) {
-            throw new ConsultaBusinessException("Nao foi possivel encontrar nenhuma consulta");
+            throw new ConsultaBusinessException("Nao foi possivel filtrar as consultas");
+        }
+    }
+
+    public List<Consulta> filterGetAllConsultasByAutonomia(OperationType operation, TipoAutonomia autonomia)
+            throws ConsultaBusinessException {
+        try {
+            TypedQuery<Consulta> query = null;
+            switch (operation) {
+                case EQUALS:
+                    query = em.createNamedQuery(Consulta.GET_BY_AUTONOMIA_EQUALS, Consulta.class);
+                    query.setParameter(Consulta.AUTONOMIA, autonomia);
+                    break;
+
+                case DIFFERENT:
+                    query = em.createNamedQuery(Consulta.GET_BY_AUTONOMIA_DIFFERENT, Consulta.class);
+                    query.setParameter(Consulta.AUTONOMIA, autonomia);
+                    break;
+            }
+            if (query != null) {
+                return query.getResultList();
+            }
+            else {
+                throw new ConsultaBusinessException("Algo correu mal ao tentar filtrar as consultas");
+            }
+        } catch (PersistenceException e) {
+            throw new ConsultaBusinessException("Nao foi possivel filtrar as consultas");
+        }
+    }
+
+    public List<Consulta> filterGetAllConsultasByGenero(OperationType operation, TipoGenero genero)
+            throws ConsultaBusinessException {
+        try {
+            TypedQuery<Consulta> query = null;
+            switch (operation) {
+                case EQUALS:
+                    query = em.createNamedQuery(Consulta.GET_BY_SEXO_EQUALS, Consulta.class);
+                    query.setParameter(Consulta.SEXO, genero);
+                    break;
+
+                case DIFFERENT:
+                    query = em.createNamedQuery(Consulta.GET_BY_SEXO_DIFFERENT, Consulta.class);
+                    query.setParameter(Consulta.SEXO, genero);
+                    break;
+            }
+            if (query != null) {
+                return query.getResultList();
+            }
+            else {
+                throw new ConsultaBusinessException("Algo correu mal ao tentar filtrar as consultas");
+            }
+        } catch (PersistenceException e) {
+            throw new ConsultaBusinessException("Nao foi possivel filtrar as consultas");
         }
     }
 }

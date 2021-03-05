@@ -448,29 +448,40 @@ public class MainWindowController extends BaseController implements Initializabl
                         consultaTable.getItems().setAll(consultaData);
                     }
                     catch (ApplicationException e) {
-                        showError(i18nBundle.getString("application.error.getting.all.consultas") + ": " + e.getMessage());
+                        showError(i18nBundle.getString("application.error.filtering.consultas") + ": " + e.getMessage());
                     }
-
-                    //todo - returned value? ^^
-
                     break;
+
                 case AUTONOMIA:
-                    consultaOperationsService.filterByAutonomia(operation.toString(), selectedValue);
+                    try {
+                        List<ConsultaDTO> filteredList = consultaOperationsService.filterByAutonomia(operation.toString(), selectedValue);
 
-                    //todo - returned value? ^^
-
+                        this.consultaData.clear();
+                        this.consultaData.addAll(filteredList);
+                        consultaTable.getItems().setAll(consultaData);
+                    }
+                    catch (ApplicationException e) {
+                        showError(i18nBundle.getString("application.error.filtering.consultas") + ": " + e.getMessage());
+                    }
                     break;
+
                 case SEXO:
-                    consultaOperationsService.filterByGenero(operation.toString(), selectedValue);
+                    try {
+                        List<ConsultaDTO> filteredList = consultaOperationsService.filterByGenero(operation.toString(), selectedValue);
 
-                    //todo - returned value? ^^
-
+                        this.consultaData.clear();
+                        this.consultaData.addAll(filteredList);
+                        consultaTable.getItems().setAll(consultaData);
+                    }
+                    catch (ApplicationException e) {
+                        showError(i18nBundle.getString("application.error.filtering.consultas") + ": " + e.getMessage());
+                    }
                     break;
             }
             return true;
         }
         catch (Exception e){
-            //todo exception? ^^
+            showError(i18nBundle.getString("application.error.filtering.consultas") + ": " + e.getMessage());
         }
         return false;
     }

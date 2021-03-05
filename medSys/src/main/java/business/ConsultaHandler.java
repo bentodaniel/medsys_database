@@ -260,9 +260,7 @@ public class ConsultaHandler {
             TipoConsulta tipo = TipoConsulta.valueOf(selectedValue);
 
             em.getTransaction().begin();
-
             Iterable<Consulta> queryResult = consultaCatalogo.filterGetAllConsultasByTipo(operationType, tipo);
-
             em.getTransaction().commit();
 
             List<ConsultaDTO> result = new ArrayList<>();
@@ -279,21 +277,71 @@ public class ConsultaHandler {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
-            throw new ApplicationException("Erro ao procurar consultas.", e);
+            throw new ApplicationException("Erro ao filtrar consultas.", e);
         } finally {
             em.close();
         }
     }
 
-    public List<ConsultaDTO> filterByAutonomia(String operation, String selectedValue) {
-        //todo
+    public List<ConsultaDTO> filterByAutonomia(String operation, String selectedValue) throws ApplicationException {
+        EntityManager em = emf.createEntityManager();
+        ConsultaCatalogo consultaCatalogo = new ConsultaCatalogo(em);
+        try {
+            OperationType operationType = OperationType.valueOf(operation);
+            TipoAutonomia autonomia = TipoAutonomia.valueOf(selectedValue);
 
-        return null;
+            em.getTransaction().begin();
+            Iterable<Consulta> queryResult = consultaCatalogo.filterGetAllConsultasByAutonomia(operationType, autonomia);
+            em.getTransaction().commit();
+
+            List<ConsultaDTO> result = new ArrayList<>();
+            queryResult.forEach(e -> result.add(ConsultaDTO.toConsultaDTO(e)));
+            return result;
+
+        } catch (ConsultaBusinessException e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw new ApplicationException(e.getMessage(), e);
+
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw new ApplicationException("Erro ao filtrar consultas.", e);
+        } finally {
+            em.close();
+        }
     }
 
-    public List<ConsultaDTO> filterByGenero(String operation, String selectedValue) {
-        //todo
+    public List<ConsultaDTO> filterByGenero(String operation, String selectedValue) throws ApplicationException {
+        EntityManager em = emf.createEntityManager();
+        ConsultaCatalogo consultaCatalogo = new ConsultaCatalogo(em);
+        try {
+            OperationType operationType = OperationType.valueOf(operation);
+            TipoGenero genero = TipoGenero.valueOf(selectedValue);
 
-        return null;
+            em.getTransaction().begin();
+            Iterable<Consulta> queryResult = consultaCatalogo.filterGetAllConsultasByGenero(operationType, genero);
+            em.getTransaction().commit();
+
+            List<ConsultaDTO> result = new ArrayList<>();
+            queryResult.forEach(e -> result.add(ConsultaDTO.toConsultaDTO(e)));
+            return result;
+
+        } catch (ConsultaBusinessException e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw new ApplicationException(e.getMessage(), e);
+
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw new ApplicationException("Erro ao filtrar consultas.", e);
+        } finally {
+            em.close();
+        }
     }
 }
