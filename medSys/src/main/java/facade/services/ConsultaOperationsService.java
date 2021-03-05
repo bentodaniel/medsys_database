@@ -50,11 +50,9 @@ public class ConsultaOperationsService {
         return consultaHandler.removeAllConsultas();
     }
 
-
-
-
-
-
+    public List<ConsultaDTO> filterByProcesso(String operation, int value, int min, int max) throws ApplicationException {
+        return consultaHandler.filterByProcesso(operation, value, min, max);
+    }
 
     public List<ConsultaDTO> filterByTipo(String operation, String selectedValue) throws ApplicationException {
         return consultaHandler.filterByTipo(operation, selectedValue);
@@ -66,5 +64,9 @@ public class ConsultaOperationsService {
 
     public List<ConsultaDTO> filterByGenero(String operation, String selectedValue) throws ApplicationException {
         return consultaHandler.filterByGenero(operation, selectedValue);
+    }
+
+    public List<ConsultaDTO> filterByIdade(String operation, int value, int min, int max) throws ApplicationException {
+        return consultaHandler.filterByIdade(operation, value, min, max);
     }
 }

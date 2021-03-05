@@ -122,7 +122,6 @@ public class MainWindowController extends BaseController implements Initializabl
 
         showUpdate_button.disableProperty().bind(Bindings.size(consultaData).greaterThan(0).not());
         showDelete_button.disableProperty().bind(Bindings.size(consultaData).greaterThan(0).not());
-        showFilter_button.disableProperty().bind(Bindings.size(consultaData).greaterThan(0).not());
 
         counterText.textProperty().bind(Bindings.size(consultaData).asString());
 
@@ -427,10 +426,39 @@ public class MainWindowController extends BaseController implements Initializabl
      * Filtra por processo ou por idade
      */
     public boolean filterByNumberValues(FilterFieldType filter, OperationType operation, int value, int min, int max) {
+        boolean result = false;
+        switch (filter) {
+            case PROCESSO:
+                try {
+                    List<ConsultaDTO> filteredList = consultaOperationsService.filterByProcesso(
+                            operation.toString(), value, min, max);
 
-        //todo
+                    this.consultaData.clear();
+                    this.consultaData.addAll(filteredList);
+                    consultaTable.getItems().setAll(consultaData);
+                    result = true;
+                }
+                catch (ApplicationException e) {
+                    showError(i18nBundle.getString("application.error.filtering.consultas") + ": " + e.getMessage());
+                }
+                break;
 
-        return false;
+            case IDADE:
+                try {
+                    List<ConsultaDTO> filteredList = consultaOperationsService.filterByIdade(
+                            operation.toString(), value, min, max);
+
+                    this.consultaData.clear();
+                    this.consultaData.addAll(filteredList);
+                    consultaTable.getItems().setAll(consultaData);
+                    result = true;
+                }
+                catch (ApplicationException e) {
+                    showError(i18nBundle.getString("application.error.filtering.consultas") + ": " + e.getMessage());
+                }
+                break;
+        }
+        return result;
     }
 
     /**

@@ -38,7 +38,7 @@ public class ConsultaCatalogo {
      */
     public Consulta getConsulta(int processoId) throws ConsultaNotFoundException {
         try {
-            TypedQuery<Consulta> query = em.createNamedQuery(Consulta.GET_BY_PROCESSO, Consulta.class);
+            TypedQuery<Consulta> query = em.createNamedQuery(Consulta.GET_BY_PROCESSO_EQUALS, Consulta.class);
             query.setParameter(Consulta.PROCESSO, processoId);
             return query.getSingleResult();
         } catch (PersistenceException e) {
@@ -133,12 +133,68 @@ public class ConsultaCatalogo {
         consulta.setData(data);
     }
 
+    /**
+     * Remove todos os dados da base de dados
+     * @throws ConsultaBusinessException Se um erro ocorrer
+     */
     public void removeAllConsultas() throws ConsultaBusinessException {
         try {
             Query query = em.createNamedQuery(Consulta.REMOVE_ALL);
             query.executeUpdate();
         } catch (PersistenceException e) {
             throw new ConsultaBusinessException("Nao foi possivel limpar a base de dados");
+        }
+    }
+
+    public List<Consulta> filterGetAllConsultasByProcesso(OperationType operation, int value, int min, int max)
+            throws ConsultaBusinessException {
+        try {
+            TypedQuery<Consulta> query = null;
+            switch (operation) {
+                case EQUALS:
+                    query = em.createNamedQuery(Consulta.GET_BY_PROCESSO_EQUALS, Consulta.class);
+                    query.setParameter(Consulta.PROCESSO, value);
+                    break;
+
+                case GREATER_THAN:
+                    query = em.createNamedQuery(Consulta.GET_BY_PROCESSO_GREATER_THAN, Consulta.class);
+                    query.setParameter(Consulta.PROCESSO, value);
+                    break;
+
+                case GREATER_THAN_OR_EQUAL:
+                    query = em.createNamedQuery(Consulta.GET_BY_PROCESSO_GREATER_THAN_OR_EQUAL, Consulta.class);
+                    query.setParameter(Consulta.PROCESSO, value);
+                    break;
+
+                case LESS_THAN:
+                    query = em.createNamedQuery(Consulta.GET_BY_PROCESSO_LESS_THAN, Consulta.class);
+                    query.setParameter(Consulta.PROCESSO, value);
+                    break;
+
+                case LESS_THAN_OR_EQUAL:
+                    query = em.createNamedQuery(Consulta.GET_BY_PROCESSO_LESS_THAN_OR_EQUAL, Consulta.class);
+                    query.setParameter(Consulta.PROCESSO, value);
+                    break;
+
+                case DIFFERENT:
+                    query = em.createNamedQuery(Consulta.GET_BY_PROCESSO_DIFFERENT, Consulta.class);
+                    query.setParameter(Consulta.PROCESSO, value);
+                    break;
+
+                case BETWEEN:
+                    query = em.createNamedQuery(Consulta.GET_BY_PROCESSO_BETWEEN, Consulta.class);
+                    query.setParameter(Consulta.PROCESSO1, min);
+                    query.setParameter(Consulta.PROCESSO2, max);
+                    break;
+            }
+            if (query != null) {
+                return query.getResultList();
+            }
+            else {
+                throw new ConsultaBusinessException("Algo correu mal ao tentar filtrar as consultas");
+            }
+        } catch (PersistenceException e) {
+            throw new ConsultaBusinessException("Nao foi possivel filtrar as consultas");
         }
     }
 
@@ -207,6 +263,58 @@ public class ConsultaCatalogo {
                 case DIFFERENT:
                     query = em.createNamedQuery(Consulta.GET_BY_SEXO_DIFFERENT, Consulta.class);
                     query.setParameter(Consulta.SEXO, genero);
+                    break;
+            }
+            if (query != null) {
+                return query.getResultList();
+            }
+            else {
+                throw new ConsultaBusinessException("Algo correu mal ao tentar filtrar as consultas");
+            }
+        } catch (PersistenceException e) {
+            throw new ConsultaBusinessException("Nao foi possivel filtrar as consultas");
+        }
+    }
+
+    public List<Consulta> filterGetAllConsultasByIdade(OperationType operation, int value, int min, int max)
+            throws ConsultaBusinessException {
+        try {
+            TypedQuery<Consulta> query = null;
+            switch (operation) {
+                case EQUALS:
+                    query = em.createNamedQuery(Consulta.GET_BY_IDADE_EQUALS, Consulta.class);
+                    query.setParameter(Consulta.IDADE, value);
+                    break;
+
+                case GREATER_THAN:
+                    query = em.createNamedQuery(Consulta.GET_BY_IDADE_GREATER_THAN, Consulta.class);
+                    query.setParameter(Consulta.IDADE, value);
+                    break;
+
+                case GREATER_THAN_OR_EQUAL:
+                    query = em.createNamedQuery(Consulta.GET_BY_IDADE_GREATER_THAN_OR_EQUAL, Consulta.class);
+                    query.setParameter(Consulta.IDADE, value);
+                    break;
+
+                case LESS_THAN:
+                    query = em.createNamedQuery(Consulta.GET_BY_IDADE_LESS_THAN, Consulta.class);
+                    query.setParameter(Consulta.IDADE, value);
+                    break;
+
+                case LESS_THAN_OR_EQUAL:
+                    query = em.createNamedQuery(Consulta.GET_BY_IDADE_LESS_THAN_OR_EQUAL, Consulta.class);
+                    query.setParameter(Consulta.IDADE, value);
+                    break;
+
+                case DIFFERENT:
+                    query = em.createNamedQuery(Consulta.GET_BY_IDADE_DIFFERENT, Consulta.class);
+                    query.setParameter(Consulta.IDADE, value);
+                    break;
+
+                case BETWEEN:
+                    query = em.createNamedQuery(Consulta.GET_BY_IDADE_BETWEEN, Consulta.class);
+                    query.setParameter(Consulta.IDADE1, min);
+                    query.setParameter(Consulta.IDADE2, max);
                     break;
             }
             if (query != null) {

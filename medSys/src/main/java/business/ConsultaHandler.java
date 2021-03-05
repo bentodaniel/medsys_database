@@ -248,9 +248,35 @@ public class ConsultaHandler {
         return result;
     }
 
+    public List<ConsultaDTO> filterByProcesso(String operation, int value, int min, int max) throws ApplicationException {
+        EntityManager em = emf.createEntityManager();
+        ConsultaCatalogo consultaCatalogo = new ConsultaCatalogo(em);
+        try {
+            OperationType operationType = OperationType.valueOf(operation);
 
+            em.getTransaction().begin();
+            Iterable<Consulta> queryResult = consultaCatalogo.filterGetAllConsultasByProcesso(operationType, value, min, max);
+            em.getTransaction().commit();
 
+            List<ConsultaDTO> result = new ArrayList<>();
+            queryResult.forEach(e -> result.add(ConsultaDTO.toConsultaDTO(e)));
+            return result;
 
+        } catch (ConsultaBusinessException e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw new ApplicationException(e.getMessage(), e);
+
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw new ApplicationException("Erro ao filtrar consultas.", e);
+        } finally {
+            em.close();
+        }
+    }
 
     public List<ConsultaDTO> filterByTipo(String operation, String selectedValue) throws ApplicationException {
         EntityManager em = emf.createEntityManager();
@@ -323,6 +349,36 @@ public class ConsultaHandler {
 
             em.getTransaction().begin();
             Iterable<Consulta> queryResult = consultaCatalogo.filterGetAllConsultasByGenero(operationType, genero);
+            em.getTransaction().commit();
+
+            List<ConsultaDTO> result = new ArrayList<>();
+            queryResult.forEach(e -> result.add(ConsultaDTO.toConsultaDTO(e)));
+            return result;
+
+        } catch (ConsultaBusinessException e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw new ApplicationException(e.getMessage(), e);
+
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw new ApplicationException("Erro ao filtrar consultas.", e);
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<ConsultaDTO> filterByIdade(String operation, int value, int min, int max) throws ApplicationException {
+        EntityManager em = emf.createEntityManager();
+        ConsultaCatalogo consultaCatalogo = new ConsultaCatalogo(em);
+        try {
+            OperationType operationType = OperationType.valueOf(operation);
+
+            em.getTransaction().begin();
+            Iterable<Consulta> queryResult = consultaCatalogo.filterGetAllConsultasByIdade(operationType, value, min, max);
             em.getTransaction().commit();
 
             List<ConsultaDTO> result = new ArrayList<>();

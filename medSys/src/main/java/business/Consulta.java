@@ -12,7 +12,14 @@ import java.util.Date;
         @NamedQuery(name = Consulta.GET_ALL, query = "SELECT c FROM Consulta c"),
         @NamedQuery(name = Consulta.REMOVE_ALL, query = "DELETE FROM Consulta"),
         @NamedQuery(name = Consulta.GET_ALL_PROCESSOS, query = "SELECT c.processo FROM Consulta c"),
-        @NamedQuery(name = Consulta.GET_BY_PROCESSO, query = "SELECT c FROM Consulta c WHERE c.processo = :" + Consulta.PROCESSO),
+
+        @NamedQuery(name = Consulta.GET_BY_PROCESSO_EQUALS, query = "SELECT c FROM Consulta c WHERE c.processo = :" + Consulta.PROCESSO),
+        @NamedQuery(name = Consulta.GET_BY_PROCESSO_GREATER_THAN, query = "SELECT c FROM Consulta c WHERE c.processo > :" + Consulta.PROCESSO),
+        @NamedQuery(name = Consulta.GET_BY_PROCESSO_GREATER_THAN_OR_EQUAL, query = "SELECT c FROM Consulta c WHERE c.processo >= :" + Consulta.PROCESSO),
+        @NamedQuery(name = Consulta.GET_BY_PROCESSO_LESS_THAN, query = "SELECT c FROM Consulta c WHERE c.processo < :" + Consulta.PROCESSO),
+        @NamedQuery(name = Consulta.GET_BY_PROCESSO_LESS_THAN_OR_EQUAL, query = "SELECT c FROM Consulta c WHERE c.processo <= :" + Consulta.PROCESSO),
+        @NamedQuery(name = Consulta.GET_BY_PROCESSO_DIFFERENT, query = "SELECT c FROM Consulta c WHERE c.processo != :" + Consulta.PROCESSO),
+        @NamedQuery(name = Consulta.GET_BY_PROCESSO_BETWEEN, query = "SELECT c FROM Consulta c WHERE c.processo BETWEEN :" + Consulta.PROCESSO1 + " AND :" + Consulta.PROCESSO2),
 
         @NamedQuery(name = Consulta.GET_BY_TIPO_EQUALS, query = "SELECT c FROM Consulta c WHERE c.tipo = :" + Consulta.TIPO),
         @NamedQuery(name = Consulta.GET_BY_TIPO_DIFFERENT, query = "SELECT c FROM Consulta c WHERE c.tipo != :" + Consulta.TIPO),
@@ -23,13 +30,28 @@ import java.util.Date;
         @NamedQuery(name = Consulta.GET_BY_SEXO_EQUALS, query = "SELECT c FROM Consulta c WHERE c.sexo = :" + Consulta.SEXO),
         @NamedQuery(name = Consulta.GET_BY_SEXO_DIFFERENT, query = "SELECT c FROM Consulta c WHERE c.sexo != :" + Consulta.SEXO),
 
+        @NamedQuery(name = Consulta.GET_BY_IDADE_EQUALS, query = "SELECT c FROM Consulta c WHERE c.idade = :" + Consulta.IDADE),
+        @NamedQuery(name = Consulta.GET_BY_IDADE_GREATER_THAN, query = "SELECT c FROM Consulta c WHERE c.idade > :" + Consulta.IDADE),
+        @NamedQuery(name = Consulta.GET_BY_IDADE_GREATER_THAN_OR_EQUAL, query = "SELECT c FROM Consulta c WHERE c.idade >= :" + Consulta.IDADE),
+        @NamedQuery(name = Consulta.GET_BY_IDADE_LESS_THAN, query = "SELECT c FROM Consulta c WHERE c.idade < :" + Consulta.IDADE),
+        @NamedQuery(name = Consulta.GET_BY_IDADE_LESS_THAN_OR_EQUAL, query = "SELECT c FROM Consulta c WHERE c.idade <= :" + Consulta.IDADE),
+        @NamedQuery(name = Consulta.GET_BY_IDADE_DIFFERENT, query = "SELECT c FROM Consulta c WHERE c.idade != :" + Consulta.IDADE),
+        @NamedQuery(name = Consulta.GET_BY_IDADE_BETWEEN, query = "SELECT c FROM Consulta c WHERE c.idade BETWEEN :" + Consulta.IDADE1 + " AND :" + Consulta.IDADE2),
+
 })
 public class Consulta {
 
     public static final String GET_ALL = "Consulta.getAll";
     public static final String REMOVE_ALL = "Consulta.removeAll";
     public static final String GET_ALL_PROCESSOS = "Consulta.getAllProcessos";
-    public static final String GET_BY_PROCESSO = "Consulta.getByProcesso";
+
+    public static final String GET_BY_PROCESSO_EQUALS = "Consulta.getByProcessoEquals";
+    public static final String GET_BY_PROCESSO_GREATER_THAN = "Consulta.getByProcessoGreaterThan";
+    public static final String GET_BY_PROCESSO_GREATER_THAN_OR_EQUAL = "Consulta.getByProcessoGreaterThanOrEqual";
+    public static final String GET_BY_PROCESSO_LESS_THAN = "Consulta.getByProcessoLessThan";
+    public static final String GET_BY_PROCESSO_LESS_THAN_OR_EQUAL = "Consulta.getByProcessoLessThanOrEqual";
+    public static final String GET_BY_PROCESSO_DIFFERENT = "Consulta.getByProcessoDifferent";
+    public static final String GET_BY_PROCESSO_BETWEEN = "Consulta.getByProcessoBetween";
 
     public static final String GET_BY_TIPO_EQUALS = "Consulta.getByTipoEquals";
     public static final String GET_BY_TIPO_DIFFERENT = "Consulta.getByTipoDifferent";
@@ -40,10 +62,23 @@ public class Consulta {
     public static final String GET_BY_SEXO_EQUALS = "Consulta.getBySexoEquals";
     public static final String GET_BY_SEXO_DIFFERENT = "Consulta.getBySexoDifferent";
 
+    public static final String GET_BY_IDADE_EQUALS = "Consulta.getByIdadeEquals";
+    public static final String GET_BY_IDADE_GREATER_THAN = "Consulta.getByIdadeGreaterThan";
+    public static final String GET_BY_IDADE_GREATER_THAN_OR_EQUAL = "Consulta.getByIdadeGreaterThanOrEqual";
+    public static final String GET_BY_IDADE_LESS_THAN = "Consulta.getByIdadeLessThan";
+    public static final String GET_BY_IDADE_LESS_THAN_OR_EQUAL = "Consulta.getByIdadeLessThanOrEqual";
+    public static final String GET_BY_IDADE_DIFFERENT = "Consulta.getByIdadeDifferent";
+    public static final String GET_BY_IDADE_BETWEEN = "Consulta.getByIdadeBetween";
+
     public static final String PROCESSO = "processo";
+    public static final String PROCESSO1 = "processo1";
+    public static final String PROCESSO2 = "processo2";
     public static final String TIPO = "tipo";
     public static final String AUTONOMIA = "autonomia";
     public static final String SEXO = "sexo";
+    public static final String IDADE = "idade";
+    public static final String IDADE1 = "idade1";
+    public static final String IDADE2 = "idade2";
 
     @Id()
     private int processo;
