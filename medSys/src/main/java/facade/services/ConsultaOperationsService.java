@@ -49,4 +49,22 @@ public class ConsultaOperationsService {
     public boolean removeAllConsultas() throws ApplicationException {
         return consultaHandler.removeAllConsultas();
     }
+
+
+
+
+
+
+
+    public List<ConsultaDTO> filterByTipo(String operation, String selectedValue) throws ApplicationException {
+        return consultaHandler.filterByTipo(operation, selectedValue);
+    }
+
+    public List<ConsultaDTO> filterByAutonomia(String operation, String selectedValue) {
+        return consultaHandler.filterByAutonomia(operation, selectedValue);
+    }
+
+    public List<ConsultaDTO> filterByGenero(String operation, String selectedValue) {
+        return consultaHandler.filterByGenero(operation, selectedValue);
+    }
 }

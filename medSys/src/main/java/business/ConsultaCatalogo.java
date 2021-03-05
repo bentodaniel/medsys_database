@@ -1,5 +1,6 @@
 package business;
 
+import business.enums.OperationType;
 import business.enums.TipoAutonomia;
 import business.enums.TipoConsulta;
 import business.enums.TipoGenero;
@@ -137,6 +138,28 @@ public class ConsultaCatalogo {
             query.executeUpdate();
         } catch (PersistenceException e) {
             throw new ConsultaBusinessException("Nao foi possivel limpar a base de dados");
+        }
+    }
+
+    public List<Consulta> filterGetAllConsultasByTipo(OperationType operation, TipoConsulta tipo)
+            throws ConsultaBusinessException {
+
+        try {
+            TypedQuery<Consulta> query = null;
+            switch (operation) {
+                case EQUALS:
+                    query = em.createNamedQuery(Consulta.GET_BY_TIPO_EQUALS, Consulta.class);
+                    query.setParameter(Consulta.TIPO, tipo);
+                    break;
+
+                case DIFFERENT:
+                    query = em.createNamedQuery(Consulta.GET_BY_TIPO_DIFFERENT, Consulta.class);
+                    query.setParameter(Consulta.TIPO, tipo);
+                    break;
+            }
+            return query.getResultList();
+        } catch (PersistenceException e) {
+            throw new ConsultaBusinessException("Nao foi possivel encontrar nenhuma consulta");
         }
     }
 }

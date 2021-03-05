@@ -3,8 +3,8 @@ package gui.java.presentation.inputController;
 import business.enums.TipoAutonomia;
 import business.enums.TipoConsulta;
 import business.enums.TipoGenero;
-import gui.java.presentation.enums.FilterFieldType;
-import gui.java.presentation.enums.OperationType;
+import business.enums.FilterFieldType;
+import business.enums.OperationType;
 import gui.java.presentation.model.FilterConsultaModel;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
@@ -249,6 +249,8 @@ public class FilterConsultaController extends BaseController implements Initiali
     @FXML
     private void filterConsulta(){
         FilterFieldType filterType = FilterFieldType.valueOf(filterConsultaModel.getSelectedFilter());
+        OperationType operation = null;
+        boolean filterSuccess = false;
         switch (filterType){
             case PROCESSO:
             case IDADE:
@@ -264,41 +266,36 @@ public class FilterConsultaController extends BaseController implements Initiali
                     }
                 }
                 else {
-                    numberValue = Integer.parseInt(filterConsultaModel.getMaxValue());
+                    numberValue = Integer.parseInt(filterConsultaModel.getNumberValue());
                 }
 
-
-                //todo
-
+                operation = OperationType.valueOf(filterConsultaModel.getOperation());
+                filterSuccess = mainWindowController.filterByNumberValues(filterType, operation, numberValue,
+                        numberMin, numberMax);
                 break;
 
             case TIPO:
             case AUTONOMIA:
             case SEXO:
-
+                operation = OperationType.valueOf(filterConsultaModel.getOperation());
+                String selectedValue = filterConsultaModel.getSelectionValue();
+                filterSuccess = mainWindowController.filterByPresetValues(filterType, operation, selectedValue);
                 break;
 
             case DATA:
+
+                //todo
 
                 break;
 
             default:
                 //does the NO_FILTER and anything else if there is an error
-                mainWindowController.startGetAll();
+                filterSuccess = mainWindowController.startGetAll();
         }
 
-
-
-
-        //todo
-        //mainWindowController.removeConsulta(Integer.parseInt(deleteConsultaModel.getProcesso()));
-        //closeWindow();
-
-        System.out.println(filterConsultaModel.getSelectedFilter());
-        System.out.println(filterConsultaModel.getOperation());
-        System.out.println(filterConsultaModel.getNumberValue());
-        System.out.println(filterConsultaModel.getMinValue());
-        System.out.println(filterConsultaModel.getMaxValue());
+        if (filterSuccess) {
+            closeWindow();
+        }
     }
 
     private void closeWindow() {

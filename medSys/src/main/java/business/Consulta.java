@@ -10,18 +10,25 @@ import java.util.Date;
 @Entity
 @NamedQueries({
         @NamedQuery(name = Consulta.GET_ALL, query = "SELECT c FROM Consulta c"),
+        @NamedQuery(name = Consulta.REMOVE_ALL, query = "DELETE FROM Consulta"),
         @NamedQuery(name = Consulta.GET_ALL_PROCESSOS, query = "SELECT c.processo FROM Consulta c"),
         @NamedQuery(name = Consulta.GET_BY_PROCESSO, query = "SELECT c FROM Consulta c WHERE c.processo = :" + Consulta.PROCESSO),
-        @NamedQuery(name = Consulta.REMOVE_ALL, query = "DELETE FROM Consulta")
+
+        @NamedQuery(name = Consulta.GET_BY_TIPO_EQUALS, query = "SELECT c FROM Consulta c WHERE c.tipo = :" + Consulta.TIPO),
+        @NamedQuery(name = Consulta.GET_BY_TIPO_DIFFERENT, query = "SELECT c FROM Consulta c WHERE c.tipo != :" + Consulta.TIPO),
 })
 public class Consulta {
 
     public static final String GET_ALL = "Consulta.getAll";
+    public static final String REMOVE_ALL = "Consulta.removeAll";
     public static final String GET_ALL_PROCESSOS = "Consulta.getAllProcessos";
     public static final String GET_BY_PROCESSO = "Consulta.getByProcesso";
-    public static final String REMOVE_ALL = "Consulta.removeAll";
+
+    public static final String GET_BY_TIPO_EQUALS = "Consulta.getByTipoEquals";
+    public static final String GET_BY_TIPO_DIFFERENT = "Consulta.getByTipoDifferent";
 
     public static final String PROCESSO = "processo";
+    public static final String TIPO = "tipo";
 
     @Id()
     private int processo;

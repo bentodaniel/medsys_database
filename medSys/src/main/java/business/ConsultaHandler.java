@@ -1,5 +1,6 @@
 package business;
 
+import business.enums.OperationType;
 import business.enums.TipoAutonomia;
 import business.enums.TipoConsulta;
 import business.enums.TipoGenero;
@@ -247,5 +248,52 @@ public class ConsultaHandler {
         return result;
     }
 
-    //todo
+
+
+
+
+    public List<ConsultaDTO> filterByTipo(String operation, String selectedValue) throws ApplicationException {
+        EntityManager em = emf.createEntityManager();
+        ConsultaCatalogo consultaCatalogo = new ConsultaCatalogo(em);
+        try {
+            OperationType operationType = OperationType.valueOf(operation);
+            TipoConsulta tipo = TipoConsulta.valueOf(selectedValue);
+
+            em.getTransaction().begin();
+
+            Iterable<Consulta> queryResult = consultaCatalogo.filterGetAllConsultasByTipo(operationType, tipo);
+
+            em.getTransaction().commit();
+
+            List<ConsultaDTO> result = new ArrayList<>();
+            queryResult.forEach(e -> result.add(ConsultaDTO.toConsultaDTO(e)));
+            return result;
+
+        } catch (ConsultaBusinessException e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw new ApplicationException(e.getMessage(), e);
+
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw new ApplicationException("Erro ao procurar consultas.", e);
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<ConsultaDTO> filterByAutonomia(String operation, String selectedValue) {
+        //todo
+
+        return null;
+    }
+
+    public List<ConsultaDTO> filterByGenero(String operation, String selectedValue) {
+        //todo
+
+        return null;
+    }
 }

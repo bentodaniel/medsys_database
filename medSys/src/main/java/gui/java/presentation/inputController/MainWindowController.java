@@ -1,7 +1,7 @@
 package gui.java.presentation.inputController;
 
-import gui.java.presentation.enums.FilterFieldType;
-import gui.java.presentation.enums.OperationType;
+import business.enums.FilterFieldType;
+import business.enums.OperationType;
 import gui.java.presentation.model.FilterConsultaModel;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -191,20 +191,23 @@ public class MainWindowController extends BaseController implements Initializabl
         return consultaOperationsService;
     }
 
-    public void startGetAll() {
-        loadAllData();
+    public boolean startGetAll() {
+        return loadAllData();
     }
 
     @FXML
-    private void loadAllData(){
+    private boolean loadAllData(){
+        boolean result = false;
         try {
             this.consultaData.clear();
             this.consultaData.addAll(consultaOperationsService.getAllConsultas());
+            result = true;
         }
         catch (ApplicationException e) {
             showError(i18nBundle.getString("application.error.getting.all.consultas") + ": " + e.getMessage());
         }
         consultaTable.getItems().setAll(consultaData);
+        return result;
     }
 
     @FXML
@@ -420,25 +423,55 @@ public class MainWindowController extends BaseController implements Initializabl
         return consultaData;
     }
 
-    public void filterByIntValue(FilterFieldType field, OperationType operation, int value){
-        switch (field){
-            case PROCESSO:
+    /**
+     * Filtra por processo ou por idade
+     */
+    public boolean filterByNumberValues(FilterFieldType filter, OperationType operation, int value, int min, int max) {
 
-                break;
-            case IDADE:
+        //todo
 
-                break;
-        }
+        return false;
     }
 
-    public void filterByIntValueInterval(FilterFieldType field, int min, int max){
-        switch (field){
-            case PROCESSO:
+    /**
+     * Filtra por valores predefinidos (enumerados)
+     */
+    public boolean filterByPresetValues(FilterFieldType filter, OperationType operation, String selectedValue) {
+        try {
+            switch (filter) {
+                case TIPO:
+                    try {
+                        List<ConsultaDTO> filteredList = consultaOperationsService.filterByTipo(operation.toString(), selectedValue);
 
-                break;
-            case IDADE:
+                        this.consultaData.clear();
+                        this.consultaData.addAll(filteredList);
+                        consultaTable.getItems().setAll(consultaData);
+                    }
+                    catch (ApplicationException e) {
+                        showError(i18nBundle.getString("application.error.getting.all.consultas") + ": " + e.getMessage());
+                    }
 
-                break;
+                    //todo - returned value? ^^
+
+                    break;
+                case AUTONOMIA:
+                    consultaOperationsService.filterByAutonomia(operation.toString(), selectedValue);
+
+                    //todo - returned value? ^^
+
+                    break;
+                case SEXO:
+                    consultaOperationsService.filterByGenero(operation.toString(), selectedValue);
+
+                    //todo - returned value? ^^
+
+                    break;
+            }
+            return true;
         }
+        catch (Exception e){
+            //todo exception? ^^
+        }
+        return false;
     }
 }
