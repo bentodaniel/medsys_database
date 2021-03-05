@@ -437,52 +437,50 @@ public class MainWindowController extends BaseController implements Initializabl
      * Filtra por valores predefinidos (enumerados)
      */
     public boolean filterByPresetValues(FilterFieldType filter, OperationType operation, String selectedValue) {
-        try {
-            switch (filter) {
-                case TIPO:
-                    try {
-                        List<ConsultaDTO> filteredList = consultaOperationsService.filterByTipo(operation.toString(), selectedValue);
+        boolean result = false;
+        switch (filter) {
+            case TIPO:
+                try {
+                    List<ConsultaDTO> filteredList = consultaOperationsService.filterByTipo(operation.toString(), selectedValue);
 
-                        this.consultaData.clear();
-                        this.consultaData.addAll(filteredList);
-                        consultaTable.getItems().setAll(consultaData);
-                    }
-                    catch (ApplicationException e) {
-                        showError(i18nBundle.getString("application.error.filtering.consultas") + ": " + e.getMessage());
-                    }
-                    break;
+                    this.consultaData.clear();
+                    this.consultaData.addAll(filteredList);
+                    consultaTable.getItems().setAll(consultaData);
+                    result = true;
+                }
+                catch (ApplicationException e) {
+                    showError(i18nBundle.getString("application.error.filtering.consultas") + ": " + e.getMessage());
+                }
+                break;
 
-                case AUTONOMIA:
-                    try {
-                        List<ConsultaDTO> filteredList = consultaOperationsService.filterByAutonomia(operation.toString(), selectedValue);
+            case AUTONOMIA:
+                try {
+                    List<ConsultaDTO> filteredList = consultaOperationsService.filterByAutonomia(operation.toString(), selectedValue);
 
-                        this.consultaData.clear();
-                        this.consultaData.addAll(filteredList);
-                        consultaTable.getItems().setAll(consultaData);
-                    }
-                    catch (ApplicationException e) {
-                        showError(i18nBundle.getString("application.error.filtering.consultas") + ": " + e.getMessage());
-                    }
-                    break;
+                    this.consultaData.clear();
+                    this.consultaData.addAll(filteredList);
+                    consultaTable.getItems().setAll(consultaData);
+                    result = true;
+                }
+                catch (ApplicationException e) {
+                    showError(i18nBundle.getString("application.error.filtering.consultas") + ": " + e.getMessage());
+                }
+                break;
 
-                case SEXO:
-                    try {
-                        List<ConsultaDTO> filteredList = consultaOperationsService.filterByGenero(operation.toString(), selectedValue);
+            case SEXO:
+                try {
+                    List<ConsultaDTO> filteredList = consultaOperationsService.filterByGenero(operation.toString(), selectedValue);
 
-                        this.consultaData.clear();
-                        this.consultaData.addAll(filteredList);
-                        consultaTable.getItems().setAll(consultaData);
-                    }
-                    catch (ApplicationException e) {
-                        showError(i18nBundle.getString("application.error.filtering.consultas") + ": " + e.getMessage());
-                    }
-                    break;
-            }
-            return true;
+                    this.consultaData.clear();
+                    this.consultaData.addAll(filteredList);
+                    consultaTable.getItems().setAll(consultaData);
+                    result = true;
+                }
+                catch (ApplicationException e) {
+                    showError(i18nBundle.getString("application.error.filtering.consultas") + ": " + e.getMessage());
+                }
+                break;
         }
-        catch (Exception e){
-            showError(i18nBundle.getString("application.error.filtering.consultas") + ": " + e.getMessage());
-        }
-        return false;
+        return result;
     }
 }
