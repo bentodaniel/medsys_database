@@ -88,12 +88,12 @@
          <Font size="15.0" />
       </font>
    </Label>
-   <DatePicker fx:id="dataDatePicker" layoutX="134.0" layoutY="627.0" prefHeight="30.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="625.0" />
+   <DatePicker fx:id="dataDatePicker" editable="false" layoutX="134.0" layoutY="627.0" prefHeight="30.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="625.0" />
    <Label layoutX="95.0" layoutY="443.0" prefHeight="34.0" prefWidth="118.0" text="%label.mandatory" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="675.0">
       <font>
          <Font size="11.0" />
       </font>
    </Label>
-   <Button fx:id="cancelUpdateBtn" onAction="#cancelCriar" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="776.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="%btn.cancel" textAlignment="CENTER" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="725.0" />
-   <Button fx:id="criarConsultaBtn" onAction="#criarConsulta" alignment="CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="776.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="%btn.criar" textAlignment="CENTER" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="725.0" />
+   <Button fx:id="cancelUpdateBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="776.0" mnemonicParsing="false" onAction="#cancelCriar" prefHeight="30.0" prefWidth="150.0" text="%btn.cancel" textAlignment="CENTER" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="725.0" />
+   <Button fx:id="criarConsultaBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="776.0" mnemonicParsing="false" onAction="#criarConsulta" prefHeight="30.0" prefWidth="150.0" text="%btn.criar" textAlignment="CENTER" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="725.0" />
 </AnchorPane>

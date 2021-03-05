@@ -1,5 +1,7 @@
 package gui.java.presentation.inputController;
 
+import gui.java.presentation.enums.FilterFieldType;
+import gui.java.presentation.enums.OperationType;
 import gui.java.presentation.model.FilterConsultaModel;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -416,5 +418,27 @@ public class MainWindowController extends BaseController implements Initializabl
 
     public List<ConsultaDTO> getConsultaData() {
         return consultaData;
+    }
+
+    public void filterByIntValue(FilterFieldType field, OperationType operation, int value){
+        switch (field){
+            case PROCESSO:
+
+                break;
+            case IDADE:
+
+                break;
+        }
+    }
+
+    public void filterByIntValueInterval(FilterFieldType field, int min, int max){
+        switch (field){
+            case PROCESSO:
+
+                break;
+            case IDADE:
+
+                break;
+        }
     }
 }
