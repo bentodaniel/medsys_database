@@ -45,6 +45,13 @@ public class FilterConsultaModel {
         return dateValue.get();
     }
 
+    public String getDateValueFormated() {
+        //data is in format dd-mm-yyyy
+        //parse to yyyy-mm-dd
+        String[] values = dateValue.get().split("-");
+        return values[2] + "-" + values[1] + "-" + values[0];
+    }
+
     public String getSelectionValue() {
         return selectionValue.get();
     }
@@ -57,12 +64,26 @@ public class FilterConsultaModel {
         return dateMinValue.get();
     }
 
+    public String getDateMinValueFormated() {
+        //data is in format dd-mm-yyyy
+        //parse to yyyy-mm-dd
+        String[] values = dateMinValue.get().split("-");
+        return values[2] + "-" + values[1] + "-" + values[0];
+    }
+
     public String getMaxValue() {
         return maxValue.get();
     }
 
     public String getDateMaxValue() {
         return dateMaxValue.get();
+    }
+
+    public String getDateMaxValueFormated() {
+        //data is in format dd-mm-yyyy
+        //parse to yyyy-mm-dd
+        String[] values = dateMaxValue.get().split("-");
+        return values[2] + "-" + values[1] + "-" + values[0];
     }
 
     /** SETTER */

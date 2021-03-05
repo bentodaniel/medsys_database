@@ -38,6 +38,10 @@ import java.util.Date;
         @NamedQuery(name = Consulta.GET_BY_IDADE_DIFFERENT, query = "SELECT c FROM Consulta c WHERE c.idade != :" + Consulta.IDADE),
         @NamedQuery(name = Consulta.GET_BY_IDADE_BETWEEN, query = "SELECT c FROM Consulta c WHERE c.idade BETWEEN :" + Consulta.IDADE1 + " AND :" + Consulta.IDADE2),
 
+        @NamedQuery(name = Consulta.GET_BY_DATA_EQUALS, query = "SELECT c FROM Consulta c WHERE c.data = :" + Consulta.DATA),
+        @NamedQuery(name = Consulta.GET_BY_DATA_DIFFERENT, query = "SELECT c FROM Consulta c WHERE c.data != :" + Consulta.DATA),
+        @NamedQuery(name = Consulta.GET_BY_DATA_BETWEEN, query = "SELECT c FROM Consulta c WHERE c.data BETWEEN :" + Consulta.DATA1 + " AND :" + Consulta.DATA2),
+
 })
 public class Consulta {
 
@@ -70,6 +74,10 @@ public class Consulta {
     public static final String GET_BY_IDADE_DIFFERENT = "Consulta.getByIdadeDifferent";
     public static final String GET_BY_IDADE_BETWEEN = "Consulta.getByIdadeBetween";
 
+    public static final String GET_BY_DATA_EQUALS = "Consulta.getByDataEquals";
+    public static final String GET_BY_DATA_DIFFERENT = "Consulta.getByDataDifferent";
+    public static final String GET_BY_DATA_BETWEEN = "Consulta.getByDataBetween";
+
     public static final String PROCESSO = "processo";
     public static final String PROCESSO1 = "processo1";
     public static final String PROCESSO2 = "processo2";
@@ -79,6 +87,9 @@ public class Consulta {
     public static final String IDADE = "idade";
     public static final String IDADE1 = "idade1";
     public static final String IDADE2 = "idade2";
+    public static final String DATA = "data";
+    public static final String DATA1 = "data1";
+    public static final String DATA2 = "data2";
 
     @Id()
     private int processo;

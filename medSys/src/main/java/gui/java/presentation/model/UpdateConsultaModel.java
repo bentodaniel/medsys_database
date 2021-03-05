@@ -90,6 +90,13 @@ public class UpdateConsultaModel {
         return data.get();
     }
 
+    public String getDataFormated() {
+        //data is in format dd-mm-yyyy
+        //parse to yyyy-mm-dd
+        String[] values = data.get().split("-");
+        return values[2] + "-" + values[1] + "-" + values[0];
+    }
+
     /** SETTERS */
 
     public void setProcessoToUpdate(String processoToUpdate) {

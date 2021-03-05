@@ -196,7 +196,7 @@ public class ConsultaHandler {
             TipoAutonomia tipoAutonomia = TipoAutonomia.valueOf(autonomia);
             TipoGenero tipoGenero = TipoGenero.valueOf(sexo);
 
-            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             Date dateParsed = format.parse(data);
 
             // call on catalog
@@ -379,6 +379,60 @@ public class ConsultaHandler {
 
             em.getTransaction().begin();
             Iterable<Consulta> queryResult = consultaCatalogo.filterGetAllConsultasByIdade(operationType, value, min, max);
+            em.getTransaction().commit();
+
+            List<ConsultaDTO> result = new ArrayList<>();
+            queryResult.forEach(e -> result.add(ConsultaDTO.toConsultaDTO(e)));
+            return result;
+
+        } catch (ConsultaBusinessException e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw new ApplicationException(e.getMessage(), e);
+
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw new ApplicationException("Erro ao filtrar consultas.", e);
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<ConsultaDTO> filterByData(String operation, String dateValue, String dateMin, String dateMax)
+            throws ApplicationException {
+        EntityManager em = emf.createEntityManager();
+        ConsultaCatalogo consultaCatalogo = new ConsultaCatalogo(em);
+        try {
+            OperationType operationType = OperationType.valueOf(operation);
+
+            Date dateValueParsed = null;
+            Date dateMinParsed = null;
+            Date dateMaxParsed = null;
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+            try {
+                dateValueParsed = format.parse(dateValue);
+            }
+            catch (Exception e) {
+                //no problem, stay as null
+            }
+
+            //todo - something is weird... the min and max dates are not passing when between is selected?
+
+            try {
+                dateMinParsed = format.parse(dateMin);
+                dateMaxParsed = format.parse(dateMax);
+            }
+            catch (Exception e) {
+                //no problem, stay as null
+            }
+
+            em.getTransaction().begin();
+            Iterable<Consulta> queryResult = consultaCatalogo.filterGetAllConsultasByData(operationType,
+                    dateValueParsed, dateMinParsed, dateMaxParsed);
             em.getTransaction().commit();
 
             List<ConsultaDTO> result = new ArrayList<>();

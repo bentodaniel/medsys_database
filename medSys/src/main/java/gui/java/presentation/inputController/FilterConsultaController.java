@@ -15,7 +15,11 @@ import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
@@ -263,6 +267,7 @@ public class FilterConsultaController extends BaseController implements Initiali
 
                     if (numberMin >= numberMax) {
                         showError(i18nBundle.getString("application.error.filter.min.max.ints"));
+                        break;
                     }
                 }
                 else {
@@ -283,9 +288,38 @@ public class FilterConsultaController extends BaseController implements Initiali
                 break;
 
             case DATA:
+                try {
+                    //these dates are in the format yyyy-mm-dd
+                    String dateValue = "";
+                    String dateMin = "";
+                    String dateMax = "";
+                    if (filterConsultaModel.getOperation().equals(OperationType.BETWEEN.toString())) {
+                        dateMin = filterConsultaModel.getDateMinValueFormated();
+                        dateMax = filterConsultaModel.getDateMaxValueFormated();
 
-                //todo
+                        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                        Date dateMinParsed = format.parse(dateMin);
+                        Date dateMaxParsed = format.parse(dateMax);
 
+                        if (!dateMinParsed.before(dateMaxParsed)) {
+                            showError(i18nBundle.getString("application.error.filter.min.max.dates"));
+                            break;
+                        }
+                    }
+                    else {
+                        dateValue = filterConsultaModel.getDateValueFormated();
+
+                        //test if the value is valid before sending the operation
+                        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                        format.parse(dateValue);
+                    }
+
+                    operation = OperationType.valueOf(filterConsultaModel.getOperation());
+                    filterSuccess = mainWindowController.filterByDate(operation, dateValue, dateMin, dateMax);
+                }
+                catch (ParseException e) {
+                    showError(i18nBundle.getString("application.error.check.inputs"));
+                }
                 break;
 
             default:

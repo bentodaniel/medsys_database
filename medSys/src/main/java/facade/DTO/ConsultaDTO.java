@@ -18,6 +18,10 @@ public class ConsultaDTO {
     private String referenciacao;
     private String gestos;
     private String observacoes;
+
+    /**
+     * By default, should be in format YYYY-MM-DD
+     */
     private String data;
 
     /**
@@ -95,8 +99,23 @@ public class ConsultaDTO {
         return observacoes;
     }
 
+    /**
+     * Date in YYYY-MM-DD format
+     * @return String in YYYY-MM-DD format
+     */
     public String getData() {
         return data;
+    }
+
+    /**
+     * Date in DD-MM-YYYY format
+     * @return String in DD-MM-YYYY format
+     */
+    public String getDataFormatDDMMYYYY() {
+        //data is in format dd-mm-yyyy
+        //parse to yyyy-mm-dd
+        String[] values = data.split("-");
+        return values[2] + "-" + values[1] + "-" + values[0];
     }
 
     /** SETTERS */

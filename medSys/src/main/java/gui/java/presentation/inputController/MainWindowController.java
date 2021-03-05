@@ -511,4 +511,23 @@ public class MainWindowController extends BaseController implements Initializabl
         }
         return result;
     }
+
+    /**
+     * Filtra por datas
+     */
+    public boolean filterByDate(OperationType operation, String dateValue, String dateMin, String dateMax) {
+        try {
+            List<ConsultaDTO> filteredList = consultaOperationsService.filterByData(operation.toString(),
+                    dateValue, dateMin, dateMax);
+
+            this.consultaData.clear();
+            this.consultaData.addAll(filteredList);
+            consultaTable.getItems().setAll(consultaData);
+            return true;
+        }
+        catch (ApplicationException e) {
+            showError(i18nBundle.getString("application.error.filtering.consultas") + ": " + e.getMessage());
+        }
+        return false;
+    }
 }

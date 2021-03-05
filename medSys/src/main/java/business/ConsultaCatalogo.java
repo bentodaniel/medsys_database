@@ -6,12 +6,12 @@ import business.enums.TipoConsulta;
 import business.enums.TipoGenero;
 import business.exceptions.ConsultaBusinessException;
 import business.exceptions.ConsultaNotFoundException;
+import facade.DTO.ConsultaDTO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -324,6 +324,39 @@ public class ConsultaCatalogo {
                 throw new ConsultaBusinessException("Algo correu mal ao tentar filtrar as consultas");
             }
         } catch (PersistenceException e) {
+            throw new ConsultaBusinessException("Nao foi possivel filtrar as consultas");
+        }
+    }
+
+    public List<Consulta> filterGetAllConsultasByData(OperationType operation, Date dateValue, Date dateMin,
+                                                         Date dateMax) throws ConsultaBusinessException {
+        try {
+            TypedQuery<Consulta> query = null;
+            switch (operation) {
+                case EQUALS:
+                    query = em.createNamedQuery(Consulta.GET_BY_DATA_EQUALS, Consulta.class);
+                    query.setParameter(Consulta.DATA, dateValue);
+                    break;
+
+                case DIFFERENT:
+                    query = em.createNamedQuery(Consulta.GET_BY_DATA_DIFFERENT, Consulta.class);
+                    query.setParameter(Consulta.DATA, dateValue);
+                    break;
+
+                case BETWEEN:
+                    query = em.createNamedQuery(Consulta.GET_BY_DATA_BETWEEN, Consulta.class);
+                    query.setParameter(Consulta.DATA1, new java.sql.Date(dateMin.getTime()));
+                    query.setParameter(Consulta.DATA2, new java.sql.Date(dateMax.getTime()));
+                    break;
+            }
+            if (query != null) {
+                return query.getResultList();
+            }
+            else {
+                throw new ConsultaBusinessException("Algo correu mal ao tentar filtrar as consultas");
+            }
+        }
+        catch (PersistenceException e) {
             throw new ConsultaBusinessException("Nao foi possivel filtrar as consultas");
         }
     }

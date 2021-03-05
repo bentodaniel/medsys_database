@@ -159,7 +159,7 @@ public class UpdateConsultaController extends BaseController implements Initiali
         referenciacaoField.textProperty().set(consulta.getReferenciacao());
         gestosField.textProperty().set(consulta.getGestos());
         observacoesField.textProperty().set(consulta.getObservacoes());
-        dataDatePicker.getEditor().textProperty().set(consulta.getData());
+        dataDatePicker.getEditor().textProperty().set(consulta.getDataFormatDDMMYYYY());
     }
 
     public void setParentController(MainWindowController controller) {
@@ -201,7 +201,7 @@ public class UpdateConsultaController extends BaseController implements Initiali
                 updateConsultaModel.getAutonomia(), updateConsultaModel.getSexo(), updateConsultaModel.getIdade(),
                 updateConsultaModel.getProfissao(), updateConsultaModel.getMotivo(), updateConsultaModel.getProblemas(),
                 updateConsultaModel.getMcdts(), updateConsultaModel.getReferenciacao(), updateConsultaModel.getGestos(),
-                updateConsultaModel.getObservacoes(), updateConsultaModel.getData());
+                updateConsultaModel.getObservacoes(), updateConsultaModel.getDataFormated());
         boolean updateSuccess = mainWindowController.updateConsulta(processo, consultaDTO);
 
         if (updateSuccess) {

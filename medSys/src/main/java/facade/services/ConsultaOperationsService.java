@@ -1,6 +1,7 @@
 package facade.services;
 
 import business.ConsultaHandler;
+import business.enums.OperationType;
 import facade.DTO.ConsultaDTO;
 import facade.exceptions.ApplicationException;
 
@@ -68,5 +69,10 @@ public class ConsultaOperationsService {
 
     public List<ConsultaDTO> filterByIdade(String operation, int value, int min, int max) throws ApplicationException {
         return consultaHandler.filterByIdade(operation, value, min, max);
+    }
+
+    public List<ConsultaDTO> filterByData(String operation, String dateValue, String dateMin, String dateMax)
+            throws ApplicationException {
+        return consultaHandler.filterByData(operation, dateValue, dateMin, dateMax);
     }
 }
