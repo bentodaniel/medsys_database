@@ -10,90 +10,90 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.java.presentation.inputController.CriarConsultaController">
 
-   <Label layoutX="25.0" layoutY="52.0" prefHeight="34.0" prefWidth="118.0" text="%label.processo" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
+   <Label layoutX="25.0" layoutY="52.0" prefHeight="34.0" prefWidth="118.0" text="%label.processo" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="15.0">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <TextField fx:id="processoField" layoutX="175.0" layoutY="52.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: 123" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0" />
+   <TextField fx:id="processoField" layoutX="175.0" layoutY="52.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: 123" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0" />
 
-   <Label layoutX="29.0" layoutY="114.0" prefHeight="34.0" prefWidth="118.0" text="%label.tipo" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="75.0">
+   <Label layoutX="29.0" layoutY="114.0" prefHeight="34.0" prefWidth="118.0" text="%label.tipo" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="60.0">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <ComboBox fx:id="tipoComboBox" layoutX="175.0" layoutY="129.0" prefHeight="30.0" prefWidth="150.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="75.0" />
-   <Label layoutX="39.0" layoutY="124.0" prefHeight="34.0" prefWidth="118.0" text="%label.autonomia" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="125.0">
+   <ComboBox fx:id="tipoComboBox" layoutX="175.0" layoutY="129.0" prefHeight="30.0" prefWidth="150.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="60.0" />
+   <Label layoutX="39.0" layoutY="124.0" prefHeight="34.0" prefWidth="118.0" text="%label.autonomia" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="105.0">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <ComboBox fx:id="autonomiaComboBox" layoutX="185.0" layoutY="139.0" prefHeight="30.0" prefWidth="150.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="125.0" />
-   <Label layoutX="14.0" layoutY="228.0" prefHeight="34.0" prefWidth="118.0" text="%label.sexo" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="175.0">
+   <ComboBox fx:id="autonomiaComboBox" layoutX="185.0" layoutY="139.0" prefHeight="30.0" prefWidth="150.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="105.0" />
+   <Label layoutX="14.0" layoutY="228.0" prefHeight="34.0" prefWidth="118.0" text="%label.sexo" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="150.0">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <ComboBox fx:id="sexoComboBox" layoutX="160.0" layoutY="243.0" prefHeight="30.0" prefWidth="150.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="175.0" />
-   <Label layoutY="284.0" prefHeight="34.0" prefWidth="118.0" text="%label.idade" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="225.0">
+   <ComboBox fx:id="sexoComboBox" layoutX="160.0" layoutY="243.0" prefHeight="30.0" prefWidth="150.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="150.0" />
+   <Label layoutY="284.0" prefHeight="34.0" prefWidth="118.0" text="%label.idade" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="195.0">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <TextField fx:id="idadeField" layoutX="150.0" layoutY="284.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: 123" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="225.0" />
-   <Label layoutX="10.0" layoutY="294.0" prefHeight="34.0" prefWidth="118.0" text="%label.profissao" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="275.0">
+   <TextField fx:id="idadeField" layoutX="150.0" layoutY="284.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: 123" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="195.0" />
+   <Label layoutX="10.0" layoutY="294.0" prefHeight="34.0" prefWidth="118.0" text="%label.profissao" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="240.0">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <TextField fx:id="profissaoField" layoutX="160.0" layoutY="294.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: abc" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="275.0" />
-   <Label layoutX="25.0" layoutY="373.0" prefHeight="34.0" prefWidth="118.0" text="%label.motivo" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="325.0">
+   <TextField fx:id="profissaoField" layoutX="160.0" layoutY="294.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: abc" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="240.0" />
+   <Label layoutX="25.0" layoutY="373.0" prefHeight="34.0" prefWidth="118.0" text="%label.motivo" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="285.0">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <TextField fx:id="motivoField" layoutX="175.0" layoutY="373.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: abc" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="325.0" />
-   <Label layoutX="35.0" layoutY="383.0" prefHeight="34.0" prefWidth="118.0" text="%label.problemas" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="375.0">
+   <TextField fx:id="motivoField" layoutX="175.0" layoutY="373.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: abc" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="285.0" />
+   <Label layoutX="35.0" layoutY="383.0" prefHeight="34.0" prefWidth="118.0" text="%label.problemas" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="330.0">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <TextField fx:id="problemasField" layoutX="185.0" layoutY="383.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: abc" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="375.0" />
-   <Label layoutX="45.0" layoutY="393.0" prefHeight="34.0" prefWidth="118.0" text="%label.mcdts" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="425.0">
+   <TextField fx:id="problemasField" layoutX="185.0" layoutY="383.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: abc" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="330.0" />
+   <Label layoutX="45.0" layoutY="393.0" prefHeight="34.0" prefWidth="118.0" text="%label.mcdts" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="375.0">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <TextField fx:id="mcdtsField" layoutX="195.0" layoutY="393.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: abc" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="425.0" />
-   <Label layoutX="55.0" layoutY="403.0" prefHeight="34.0" prefWidth="118.0" text="%label.referenciacao" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="475.0">
+   <TextField fx:id="mcdtsField" layoutX="195.0" layoutY="393.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: abc" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="375.0" />
+   <Label layoutX="55.0" layoutY="403.0" prefHeight="34.0" prefWidth="118.0" text="%label.referenciacao" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="420.0">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <TextField fx:id="referenciacaoField" layoutX="205.0" layoutY="403.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: abc" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="475.0" />
-   <Label layoutX="65.0" layoutY="413.0" prefHeight="34.0" prefWidth="118.0" text="%label.gestos" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="525.0">
+   <TextField fx:id="referenciacaoField" layoutX="205.0" layoutY="403.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: abc" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="420.0" />
+   <Label layoutX="65.0" layoutY="413.0" prefHeight="34.0" prefWidth="118.0" text="%label.gestos" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="465.0">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <TextField fx:id="gestosField" layoutX="215.0" layoutY="413.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: abc" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="525.0" />
-   <Label layoutX="75.0" layoutY="423.0" prefHeight="34.0" prefWidth="118.0" text="%label.observacoes" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="575.0">
+   <TextField fx:id="gestosField" layoutX="215.0" layoutY="413.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: abc" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="465.0" />
+   <Label layoutX="75.0" layoutY="423.0" prefHeight="34.0" prefWidth="118.0" text="%label.observacoes" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="510.0">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <TextField fx:id="observacoesField" layoutX="225.0" layoutY="423.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: abc" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="575.0" />
-   <Label layoutX="85.0" layoutY="433.0" prefHeight="34.0" prefWidth="118.0" text="%label.data" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="625.0">
+   <TextField fx:id="observacoesField" layoutX="225.0" layoutY="423.0" prefHeight="30.0" prefWidth="167.0" promptText="Ex: abc" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="510.0" />
+   <Label layoutX="85.0" layoutY="433.0" prefHeight="34.0" prefWidth="118.0" text="%label.data" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="555.0">
       <font>
          <Font size="15.0" />
       </font>
    </Label>
-   <DatePicker fx:id="dataDatePicker" editable="false" layoutX="134.0" layoutY="627.0" prefHeight="30.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="625.0" />
-   <Label layoutX="95.0" layoutY="443.0" prefHeight="34.0" prefWidth="118.0" text="%label.mandatory" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="675.0">
+   <DatePicker fx:id="dataDatePicker" editable="false" layoutX="134.0" layoutY="627.0" prefHeight="30.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="555.0" />
+   <Label layoutX="95.0" layoutY="443.0" prefHeight="34.0" prefWidth="118.0" text="%label.mandatory" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="585.0">
       <font>
          <Font size="11.0" />
       </font>
    </Label>
-   <Button fx:id="cancelUpdateBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="776.0" mnemonicParsing="false" onAction="#cancelCriar" prefHeight="30.0" prefWidth="150.0" text="%btn.cancel" textAlignment="CENTER" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="725.0" />
-   <Button fx:id="criarConsultaBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="776.0" mnemonicParsing="false" onAction="#criarConsulta" prefHeight="30.0" prefWidth="150.0" text="%btn.criar" textAlignment="CENTER" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="725.0" />
+   <Button fx:id="cancelUpdateBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="776.0" mnemonicParsing="false" onAction="#cancelCriar" prefHeight="30.0" prefWidth="150.0" text="%btn.cancel" textAlignment="CENTER" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="630.0" />
+   <Button fx:id="criarConsultaBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="776.0" mnemonicParsing="false" onAction="#criarConsulta" prefHeight="30.0" prefWidth="150.0" text="%btn.criar" textAlignment="CENTER" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="630.0" />
 </AnchorPane>

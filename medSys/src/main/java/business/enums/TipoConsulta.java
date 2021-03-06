@@ -1,5 +1,5 @@
 package business.enums;
 
 public enum TipoConsulta {
-    TIPO1, TIPO2
+    DM, HTA, SM, SIJ, SA, CA, PF, OUTRO
 }

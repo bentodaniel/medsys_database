@@ -40,7 +40,7 @@ public class Startup extends Application {
 
         mainWindowController.startGetAll();
 
-        stage.setScene(new Scene(root, 1280, 720));
+        stage.setScene(new Scene(root, 800, 600));
         stage.setTitle(i18nBundle.getString("application.title"));
         //stage.setResizable(false);
         stage.show();
